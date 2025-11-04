@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Study Planner</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+  <h1>Smart Study Planner</h1>
+</header>
+
+<section class="subjects-slider">
+  <div class="slides-wrapper">
+
+    <!-- Mathematics Slide -->
+    <div class="slide" style="background-image: url('{{ url_for('static', filename='images/math.jpeg') }}');">
+      <div class="slide-content">
+        <h2>Mathematics</h2>
+
+        <!-- Mood tracker -->
+        <div class="mood-container" data-subject="Mathematics">
+          <span class="mood-btn" data-mood="😃">😃</span>
+          <span class="mood-btn" data-mood="😐">😐</span>
+          <span class="mood-btn" data-mood="😞">😞</span>
+        </div>
+        <p class="ai-message" id="aiMessage-Mathematics">Select a mood to get AI suggestion 🤖</p>
+
+        <!-- Timer -->
+        <div class="timer-container" data-subject="Mathematics">
+          <h3>Study Timer</h3>
+          <div class="timer">25:00</div>
+          <div class="timer-buttons">
+            <button class="start-btn">Start</button>
+            <button class="pause-btn">Pause</button>
+            <button class="reset-btn">Reset</button>
+          </div>
+        </div>
+
+        <!-- Tasks -->
+        <ul>
+          {% for task in tasks["Mathematics"] %}
+          <li>
+            {{ task.task }} {% if task.done %}✔️{% endif %} 
+            {% if task.due_date %}- Due: {{ task.due_date }}{% endif %}
+            <button class="remove-btn" data-task="{{ task.task }}">❌</button>
+          </li>
+          {% endfor %}
+        </ul>
+
+        <form action="{{ url_for('add_task') }}" method="POST">
+          <input type="hidden" name="subject" value="Mathematics">
+          <input type="text" name="task" placeholder="Add new task..." required>
+          <input type="date" name="due_date">
+          <button type="submit">Add Task</button>
+        </form>
+   
+
+<a href="https://student.schoolai.com/dot/spaces/join?code=AWSM-1U2C" target="_blank" class="schoolai-btn">
+  Open SchoolAI for Help 🤖
+</a>
+
+      </div>
+    </div>
+
+    <!-- Biology Slide -->
+    <div class="slide" style="background-image: url('{{ url_for('static', filename='images/biology.jpeg') }}');">
+      <div class="slide-content">
+        <h2>Biology</h2>
+
+        <div class="mood-container" data-subject="Biology">
+          <span class="mood-btn" data-mood="😃">😃</span>
+          <span class="mood-btn" data-mood="😐">😐</span>
+          <span class="mood-btn" data-mood="😞">😞</span>
+        </div>
+        <p class="ai-message" id="aiMessage-Biology">Select a mood to get AI suggestion 🤖</p>
+
+        <div class="timer-container" data-subject="Biology">
+          <h3>Study Timer</h3>
+          <div class="timer">25:00</div>
+          <div class="timer-buttons">
+            <button class="start-btn">Start</button>
+            <button class="pause-btn">Pause</button>
+            <button class="reset-btn">Reset</button>
+          </div>
+        </div>
+
+        <ul>
+          {% for task in tasks["Biology"] %}
+          <li>
+            {{ task.task }} {% if task.done %}✔️{% endif %} 
+            {% if task.due_date %}- Due: {{ task.due_date }}{% endif %}
+            <button class="remove-btn" data-task="{{ task.task }}">❌</button>
+          </li>
+          {% endfor %}
+        </ul>
+
+        <form action="{{ url_for('add_task') }}" method="POST">
+          <input type="hidden" name="subject" value="Biology">
+          <input type="text" name="task" placeholder="Add new task..." required>
+          <input type="date" name="due_date">
+          <button type="submit">Add Task</button>
+        </form>
+        <a href="" target="_blank" class="schoolai-btn">
+        <a href="https://student.schoolai.com/dot/spaces/join?code=AWSM-Y3IG" target="_blank" class="schoolai-btn">
+  Open SchoolAI for Help 🤖
+</a>
+      </div>
+    </div>
+
+    <!-- English Slide -->
+    <div class="slide" style="background-image: url('{{ url_for('static', filename='images/english.jpeg') }}');">
+      <div class="slide-content">
+        <h2>English</h2>
+
+        <div class="mood-container" data-subject="English">
+          <span class="mood-btn" data-mood="😃">😃</span>
+          <span class="mood-btn" data-mood="😐">😐</span>
+          <span class="mood-btn" data-mood="😞">😞</span>
+        </div>
+        <p class="ai-message" id="aiMessage-English">Select a mood to get AI suggestion 🤖</p>
+
+        <div class="timer-container" data-subject="English">
+          <h3>Study Timer</h3>
+          <div class="timer">25:00</div>
+          <div class="timer-buttons">
+            <button class="start-btn">Start</button>
+            <button class="pause-btn">Pause</button>
+            <button class="reset-btn">Reset</button>
+          </div>
+        </div>
+
+        <ul>
+          {% for task in tasks["English"] %}
+          <li>
+            {{ task.task }} {% if task.done %}✔️{% endif %} 
+            {% if task.due_date %}- Due: {{ task.due_date }}{% endif %}
+            <button class="remove-btn" data-task="{{ task.task }}">❌</button>
+          </li>
+          {% endfor %}
+        </ul>
+
+        <form action="{{ url_for('add_task') }}" method="POST">
+          <input type="hidden" name="subject" value="English">
+          <input type="text" name="task" placeholder="Add new task..." required>
+          <input type="date" name="due_date">
+          <button type="submit">Add Task</button>
+        </form>
+        <a href="https://student.schoolai.com/dot/spaces/join?code=AWSM-Q2I4" target="_blank" class="schoolai-btn">
+  Open SchoolAI for Help 🤖
+</a>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+</section>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
